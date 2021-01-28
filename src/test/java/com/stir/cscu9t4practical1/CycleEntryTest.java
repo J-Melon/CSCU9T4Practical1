@@ -13,26 +13,25 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
- * @author saemundur
+ * @author Josh Hartley
  */
 public class CycleEntryTest {
-    
+
     public CycleEntryTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -132,7 +131,7 @@ public class CycleEntryTest {
         float result = instance.getDistance();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getTerrain method, of class CycleEntry.
      */
@@ -156,7 +155,7 @@ public class CycleEntryTest {
         String result = instance.getTempo();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getEntry method, of class CycleEntry.
      */
@@ -168,5 +167,5 @@ public class CycleEntryTest {
         String result = instance.getEntry();
         assertEquals(expResult, result);
     }
-    
+
 }

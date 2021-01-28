@@ -16,22 +16,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author saemundur
  */
 public class SprintEntryTest {
-    
+
     public SprintEntryTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -131,7 +131,7 @@ public class SprintEntryTest {
         float result = instance.getDistance();
         assertEquals(expResult, result, 0.0);
     }
-    
+
     /**
      * Test of getRepetitions method of class SprintEntry
      */
@@ -143,7 +143,7 @@ public class SprintEntryTest {
         int result = instance.getRepetitions();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of getRecovery method of class SprintEntry
      */
@@ -167,5 +167,5 @@ public class SprintEntryTest {
         String result = instance.getEntry();
         assertEquals(expResult, result);
     }
-    
+
 }

@@ -22,11 +22,9 @@ import java.lang.reflect.Method;
 import javax.swing.JButton;
 
 
-
-
 /**
  *
- * @author saemundur
+ * @author Josh Hartley
  */
 public class TrainingRecordGUITest {
 
