@@ -28,8 +28,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 	private JButton addR = new JButton("Add");
 	private JButton lookUpByDate = new JButton("Look Up");
 	
-	private JButton findAllByDate = new JButton("FABD");
-	
+	private JButton findAllByDate = new JButton("Find All By Date");
 	
 	private TrainingRecord myAthletes = new TrainingRecord();
 	
@@ -102,7 +101,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		
 		if (event.getSource() == findAllByDate)
 		{
-			message = "Go away (Not imp)";
+			message = lookupAllEntry();
 		}
 		
 		outputArea.setText(message);
@@ -132,9 +131,16 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		int d = Integer.parseInt(day.getText());
 		int y = Integer.parseInt(year.getText());
 		outputArea.setText("looking up record ...");
-		String message = myAthletes.lookupEntry(d, m, y);
-		
-		return message;
+		return myAthletes.lookupEntry(d, m, y);
+	}
+	
+	public String lookupAllEntry()
+	{
+		int m = Integer.parseInt(month.getText());
+		int d = Integer.parseInt(day.getText());
+		int y = Integer.parseInt(year.getText());
+		outputArea.setText("looking up record ...");
+		return myAthletes.lookupAllEntry(d, m, y);
 	}
 	
 	public void blankDisplay()
