@@ -10,11 +10,11 @@ public class Entry
 	
 	public Entry (String n, int d, int m, int y, int h, int min, int s, float dist)
 	{
-		name = n;
 		Calendar inst = Calendar.getInstance();
 		inst.set(y,m-1,d,h,min,s);
-		dateAndTime = inst;
-		distance = dist;
+		this.name = n;
+		this.dateAndTime = inst;
+		this.distance = dist;
 	}
 	
 	public String getName ()
@@ -66,4 +66,6 @@ public class Entry
 		
 		return result;
 	}
+	
+	
 }
