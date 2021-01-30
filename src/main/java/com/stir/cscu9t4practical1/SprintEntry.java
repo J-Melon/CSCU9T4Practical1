@@ -9,16 +9,16 @@ public class SprintEntry extends Entry
 	
 	/**
 	 * Constructor
-	 * @param n Name
-	 * @param d Day
-	 * @param m Month
-	 * @param y Year
-	 * @param h Hours
-	 * @param min Minutes
-	 * @param s Seconds
-	 * @param dist Distance
-	 * @param repetitions Repetitions around track
-	 * @param recovery Recovery: Time between repetitions
+	 * @param n name
+	 * @param d day
+	 * @param m month
+	 * @param y year
+	 * @param h hours
+	 * @param min minutes
+	 * @param s seconds
+	 * @param dist distance
+	 * @param repetitions repetitions around track
+	 * @param recovery recovery: time between repetitions
 	 */
 	public SprintEntry(String n, int d, int m, int y, int h, int min, int s, float dist, int repetitions, int recovery)
 	{
@@ -28,8 +28,8 @@ public class SprintEntry extends Entry
 	}
 	
 	/**
-	 * Gets a sprint entry and concatenates it into a string
-	 * @return String, format: "Alice sprinted 4x300m in 0:16:7 with 2 minutes recovery on 1/2/2003\n"
+	 * Gets a sprint entry and concatenates it into a string.
+	 * @return sprint entry string, format: "Alice sprinted 4x300m in 0:16:7 with 2 minutes recovery on 1/2/2003\n"
 	 */
 	@Override
 	public String getEntry ()
@@ -41,13 +41,13 @@ public class SprintEntry extends Entry
 		return result;
 	}
 	
-	/** @return Number of repetitions (track loops) done */
+	/** @return number of repetitions (track loops) done. */
 	public int getRepetitions()
 	{
 		return repetitions;
 	}
 	
-	/** @return Minutes between each repetition */
+	/** @return minutes between each repetition. */
 	public int getRecovery()
 	{
 		return recovery;
