@@ -17,6 +17,18 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 	private JTextField mins = new JTextField(2);
 	private JTextField secs = new JTextField(2);
 	private JTextField dist = new JTextField(4);
+	
+	//CycleEntry
+	private JTextField terrain = new JTextField(4);
+	private JTextField tempo = new JTextField(4);
+	
+	//SwimEntry
+	private JTextField where = new JTextField(4);
+	
+	//SprintEntry
+	private JTextField repetitions = new JTextField(4);
+	private JTextField recovery = new JTextField(4);
+	
 	private JLabel labn = new JLabel(" Name:");
 	private JLabel labd = new JLabel(" Day:");
 	private JLabel labm = new JLabel(" Month:");
@@ -25,14 +37,31 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 	private JLabel labmm = new JLabel(" Mins:");
 	private JLabel labs = new JLabel(" Secs:");
 	private JLabel labdist = new JLabel(" Distance (km):");
+	
+	//CycleEntry
+	private JLabel labTerrain = new JLabel(" Terrain:");
+	private JLabel labTempo = new JLabel(" Tempo");
+	
+	//SwimEntry
+	private JLabel labWhere = new JLabel(" Location");
+	
+	//SprintEntry
+	private JLabel labRepetitions = new JLabel(" Repetitions:");
+	private JLabel labRecovery = new JLabel(" Recovery (mins)");
+	
 	private JButton addR = new JButton("Add");
 	private JButton lookUpByDate = new JButton("Look Up");
 	
 	private JButton findAllByDate = new JButton("Find All By Date");
 	
-	private TrainingRecord myAthletes = new TrainingRecord();
+	//Entry type dropdown list
+	String[] entryTypes = new String[] {"Cycle", "Swim", "Sprint"};
+	JComboBox<String> entryList = new JComboBox<>(entryTypes);
 	
-	private JTextArea outputArea = new JTextArea(5, 50);
+	private String entryType = "";
+	
+	private TrainingRecord myAthletes = new TrainingRecord();
+	private JTextArea outputArea = new JTextArea(5, 70);
 	
 	public static void main(String[] args)
 	{
@@ -44,6 +73,12 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 	{
 		super("Training Record");
 		setLayout(new FlowLayout());
+		
+		//Combo-box
+		add(entryList);
+		entryList.addActionListener(this);
+		entryList.setSelectedItem("Cycle"); //Sets default selected
+		
 		add(labn);
 		add(name);
 		name.setEditable(true);
@@ -68,21 +103,41 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		add(labdist);
 		add(dist);
 		dist.setEditable(true);
+		
+		//CycleEntry
+		add(labTerrain);
+		add(terrain);
+		terrain.setEditable(true);
+		add(labTempo);
+		add(tempo);
+		tempo.setEditable(true);
+		
+		//SwimEntry
+		add(labWhere);
+		add(where);
+		where.setEditable(true);
+		
+		//SprintEntry
+		add(labRepetitions);
+		add(repetitions);
+		repetitions.setEditable(true);
+		add(labRecovery);
+		add(recovery);
+		recovery.setEditable(true);
+		
 		add(addR);
 		addR.addActionListener(this);
 		add(lookUpByDate);
 		lookUpByDate.addActionListener(this);
-		add(outputArea);
-		outputArea.setEditable(false);
-		setSize(720, 200);
-		setVisible(true);
-		blankDisplay();
-		
-		// To save typing in new entries while testing, uncomment
-		// the following lines (or add your own test cases)
 		
 		add(findAllByDate);
 		findAllByDate.addActionListener(this);
+		
+		add(outputArea);
+		outputArea.setEditable(false);
+		setSize(720, 250);
+		setVisible(true);
+		blankDisplay();
 	}
 	
 	//Listen for and respond to GUI events
@@ -91,7 +146,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		String message = "";
 		if (event.getSource() == addR)
 		{
-			message = addEntry("generic");
+			message = addEntry();
 		}
 		
 		if (event.getSource() == lookUpByDate)
@@ -104,24 +159,102 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 			message = lookupAllEntry();
 		}
 		
+		if (event.getSource() == entryList)
+		{
+			JComboBox<String> combo = (JComboBox<String>) event.getSource();
+			entryType = (String) combo.getSelectedItem();
+			System.out.println(combo.getSelectedItem() + " is selected");
+		}
+		
 		outputArea.setText(message);
 		blankDisplay();
 	}
 	
-	public String addEntry(String what)
+	public String addEntry()
 	{
-		String message = "Record added\n";
-		System.out.println("Adding "+what+" entry to the records");
+		String message;
 		String n = name.getText();
-		int m = Integer.parseInt(month.getText());
-		int d = Integer.parseInt(day.getText());
-		int y = Integer.parseInt(year.getText());
-		float km = java.lang.Float.parseFloat(dist.getText());
-		int h = Integer.parseInt(hours.getText());
-		int mm = Integer.parseInt(mins.getText());
-		int s = Integer.parseInt(secs.getText());
-		Entry e = new Entry(n, d, m, y, h, mm, s, km);
-		myAthletes.addEntry(e);
+		
+		//CycleEntry
+		String terr = terrain.getText();
+		String tem = tempo.getText();
+		
+		//SwimEntry
+		String wh = where.getText();
+		
+		//Validation for empty string variables
+		if(n.isEmpty()) //Name empty
+		{
+			return "Please enter a name";
+		}
+		else if (entryType.equals("Cycle"))
+		{
+			if (terr.isEmpty()) //Terrain empty
+			{
+				return "Please enter a terrain or change entry type";
+			}
+			else if (tem.isEmpty()) //Tempo empty
+			{
+				return "Please enter a tempo or change entry type";
+			}
+		}
+		else if (entryType.equals("Swim") && wh.isEmpty()) //Where/location empty
+		{
+			return "Please enter a tempo or change entry type";
+		}
+		
+		//Standard init and dec.
+		int m = 0; int d = 0; int y = 0; float km = 0; int h = 0; int mm = 0; int s = 0; int repe = 0; int reco = 0;
+		
+		try //Validation for non-int integer entry (Cycle)
+		{
+			m = Integer.parseInt(month.getText());
+			d = Integer.parseInt(day.getText());
+			y = Integer.parseInt(year.getText());
+			km = java.lang.Float.parseFloat(dist.getText());
+			h = Integer.parseInt(hours.getText());
+			mm = Integer.parseInt(mins.getText());
+			s = Integer.parseInt(secs.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			return message = "Enter numbers where numbers should be.";
+		}
+		
+		try //Validation for non-int integer entry (Sprint)
+		{
+			//SprintEntry
+			repe = Integer.parseInt(repetitions.getText());
+			reco = Integer.parseInt(recovery.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			if (entryType.equals("Sprint"))
+			{
+				return message = "Enter numbers where numbers should be including repetitions and recovery time for a sprint entry.";
+			}
+		}
+		
+		Entry e;
+		
+		switch (entryType)
+		{
+			case "Cycle": //CycleEntry
+				e = new CycleEntry(n, d, m, y, h, mm, s, km, terr, tem);
+				break;
+			case "Swim": //SwimEntry
+				e = new SwimEntry(n, d, m, y, h, mm, s, km, wh);
+				break;
+			case "Sprint": //SprintEntry
+				e = new SprintEntry(n, d, m, y, h, mm, s, km, repe, reco);
+				break;
+			default: //Standard entry (impossible...maybe)
+				e = new Entry(n, d, m, y, h, mm, s, km);
+				break;
+		}
+		
+		System.out.println("Adding entry to the records");
+		message = myAthletes.addEntry(e); //Validation for uniqueness of entry
 		return message;
 	}
 	
@@ -139,7 +272,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		int m = Integer.parseInt(month.getText());
 		int d = Integer.parseInt(day.getText());
 		int y = Integer.parseInt(year.getText());
-		outputArea.setText("looking up record ...");
+		outputArea.setText("looking up records ...");
 		return myAthletes.lookupAllEntry(d, m, y);
 	}
 	
@@ -154,6 +287,16 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		secs.setText("");
 		dist.setText("");
 		
+		//CycleEntry
+		terrain.setText("");
+		tempo.setText("");
+		
+		//SwimEntry
+		where.setText("");
+		
+		//SprintEntry
+		repetitions.setText("");
+		recovery.setText("");
 	}
 	
 	//Fills the input fields on the display for testing purposes only
@@ -167,6 +310,12 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		mins.setText(String.valueOf(ent.getMin()));
 		secs.setText(String.valueOf(ent.getSec()));
 		dist.setText(String.valueOf(ent.getDistance()));
+	}
+	
+	//Changes selected item in combo-box (For testing)
+	public void setComboBox(String type)
+	{
+		entryList.setSelectedItem(type);
 	}
 }
 

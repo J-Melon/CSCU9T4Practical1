@@ -11,10 +11,19 @@ public class TrainingRecord
 		tr = new ArrayList<Entry>();
 	}
 	
-	//Add a record to the list
-	public void addEntry(Entry e)
+	//Add a unique record to the list
+	public String addEntry(Entry e)
 	{
+		for (Entry ent : tr)
+		{
+			if (e.getEntry().equals(ent.getEntry()))
+			{
+				return "Entry not unique. Try again.";
+			}
+		}
+		
 		tr.add(e);
+		return "Record added\n";
 	}
 	
 	//Look up the entry of a given day and month
