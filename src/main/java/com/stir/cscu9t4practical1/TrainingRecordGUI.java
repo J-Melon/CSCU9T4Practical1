@@ -50,6 +50,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 	private JLabel labRecovery = new JLabel(" Recovery (mins)");
 	
 	private JButton addR = new JButton("Add");
+	
+	private JButton removeR = new JButton("Remove");
+	
 	private JButton lookUpByDate = new JButton("Look Up");
 	
 	private JButton findAllByDate = new JButton("Find All By Date");
@@ -127,6 +130,10 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		
 		add(addR);
 		addR.addActionListener(this);
+		
+		add(removeR);
+		removeR.addActionListener(this);
+		
 		add(lookUpByDate);
 		lookUpByDate.addActionListener(this);
 		
@@ -147,6 +154,11 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		if (event.getSource() == addR)
 		{
 			message = addEntry();
+		}
+		
+		if (event.getSource() == removeR)
+		{
+			message = removeEntry();
 		}
 		
 		if (event.getSource() == lookUpByDate)
@@ -200,10 +212,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		}
 		else if (entryType.equals("Swim") && wh.isEmpty()) //Where/location empty
 		{
-			return "Please enter a tempo or change entry type";
+			return "Please enter a location or change entry type";
 		}
 		
-		//Standard init and dec.
 		int m = 0; int d = 0; int y = 0; float km = 0; int h = 0; int mm = 0; int s = 0; int repe = 0; int reco = 0;
 		
 		try //Validation for non-int integer entry (Cycle)
@@ -218,7 +229,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		}
 		catch (NumberFormatException e)
 		{
-			return message = "Enter numbers where numbers should be.";
+			return message = "Please fill in the fields necessary.";
 		}
 		
 		try //Validation for non-int integer entry (Sprint)
@@ -231,7 +242,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		{
 			if (entryType.equals("Sprint"))
 			{
-				return message = "Enter numbers where numbers should be including repetitions and recovery time for a sprint entry.";
+				return message = "Please fill in the fields necessary including repetitions and recovery time for a sprint entry.";
 			}
 		}
 		
@@ -253,25 +264,64 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 				break;
 		}
 		
-		System.out.println("Adding entry to the records");
 		message = myAthletes.addEntry(e); //Validation for uniqueness of entry
 		return message;
 	}
 	
+	public String removeEntry()
+	{
+		int m = 0; int d = 0; int y = 0;
+		
+		String n = name.getText();
+		
+		try
+		{
+			m = Integer.parseInt(month.getText());
+			d = Integer.parseInt(day.getText());
+			y = Integer.parseInt(year.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			return "Please fill in the fields necessary.";
+		}
+		
+		return myAthletes.removeEntry(n, m, d, y);
+	}
+	
 	public String lookupEntry()
 	{
-		int m = Integer.parseInt(month.getText());
-		int d = Integer.parseInt(day.getText());
-		int y = Integer.parseInt(year.getText());
+		int m = 0; int d = 0; int y = 0;
+		
+		try
+		{
+			m = Integer.parseInt(month.getText());
+			d = Integer.parseInt(day.getText());
+			y = Integer.parseInt(year.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			return "Please fill in the fields necessary.";
+		}
+		
 		outputArea.setText("looking up record ...");
 		return myAthletes.lookupEntry(d, m, y);
 	}
 	
 	public String lookupAllEntry()
 	{
-		int m = Integer.parseInt(month.getText());
-		int d = Integer.parseInt(day.getText());
-		int y = Integer.parseInt(year.getText());
+		int m = 0; int d = 0; int y = 0;
+		
+		try
+		{
+			m = Integer.parseInt(month.getText());
+			d = Integer.parseInt(day.getText());
+			y = Integer.parseInt(year.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			return "Please fill in the fields necessary.";
+		}
+		
 		outputArea.setText("looking up records ...");
 		return myAthletes.lookupAllEntry(d, m, y);
 	}

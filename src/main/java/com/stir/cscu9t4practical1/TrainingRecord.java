@@ -26,6 +26,20 @@ public class TrainingRecord
 		return "Record added\n";
 	}
 	
+	public String removeEntry(String n, int d, int m, int y)
+	{
+		for (Entry ent : tr)
+		{
+			if (n.equals(ent.getName()) && d == ent.getDay() && m == ent.getMonth() && y == ent.getYear())
+			{
+				tr.remove(ent);
+				return "Entry removed.";
+			}
+		}
+		
+		return "Entry not found";
+	}
+	
 	//Look up the entry of a given day and month
 	public String lookupEntry (int d, int m, int y)
 	{
