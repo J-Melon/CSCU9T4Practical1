@@ -11,7 +11,11 @@ public class TrainingRecord
 		tr = new ArrayList<Entry>();
 	}
 	
-	//Add a unique record to the list
+	/**
+	 * Add a unique record to the list.
+	 * @param e entry
+	 * @return message
+	 */
 	public String addEntry(Entry e)
 	{
 		for (Entry ent : tr)
@@ -26,6 +30,13 @@ public class TrainingRecord
 		return "Record added\n";
 	}
 	
+	/** Remove a record from the list based on name and date.
+	 * @param n name
+	 * @param d day
+	 * @param m month
+	 * @param y year
+	 * @return message
+	 */
 	public String removeEntry(String n, int d, int m, int y)
 	{
 		for (Entry ent : tr)
@@ -40,6 +51,13 @@ public class TrainingRecord
 		return "Entry not found";
 	}
 	
+	/**
+	 * Checks whether data is a valid date.
+	 * @param d day
+	 * @param m month
+	 * @param y year
+	 * @return Bool: false = not valid, true = valid
+	 */
 	public Boolean isValidDate(int d, int m, int y)
 	{
 		int[] daysInMonth= new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -58,7 +76,13 @@ public class TrainingRecord
 		return d <= daysInMonth[m - 1];
 	}
 	
-	//Look up the entry of a given day and month
+	/**
+	 * Looks up a single entry of a given day and month
+	 * @param d day
+	 * @param m month
+	 * @param y year
+	 * @return message (whether is finds an entry)
+	 */
 	public String lookupEntry (int d, int m, int y)
 	{
 		ListIterator<Entry> iter = tr.listIterator();
@@ -75,6 +99,13 @@ public class TrainingRecord
 		return result;
 	}
 	
+	/**
+	 * Looks up all entries of a given day and month
+	 * @param d day
+	 * @param m month
+	 * @param y year
+	 * @return message (whether is finds entries)
+	 */
 	//Looks up all entries of a given day and month
 	public String lookupAllEntry (int d, int m, int y)
 	{
@@ -97,17 +128,18 @@ public class TrainingRecord
 		return result.toString();
 	}
 	
-	//Count the number of entries
+	/**
+	 * Counts the number of entries
+	 * @return number of entries
+	 */
 	public int getNumberOfEntries()
 	{
 		return tr.size();
 	}
 	
-	//Clear all entries
+	/** Clears all entries */
 	public void clearAllEntries()
 	{
 		tr.clear();
 	}
-	
-	
 }
