@@ -232,6 +232,11 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 			return message = "Please fill in the fields necessary.";
 		}
 		
+		if(!myAthletes.isValidDate(d, m, y))
+		{
+			return message = "Date not valid. Please try again";
+		}
+		
 		try //Validation for non-int integer entry (Sprint)
 		{
 			//SprintEntry
@@ -250,17 +255,14 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		
 		switch (entryType)
 		{
-			case "Cycle": //CycleEntry
-				e = new CycleEntry(n, d, m, y, h, mm, s, km, terr, tem);
-				break;
 			case "Swim": //SwimEntry
 				e = new SwimEntry(n, d, m, y, h, mm, s, km, wh);
 				break;
 			case "Sprint": //SprintEntry
 				e = new SprintEntry(n, d, m, y, h, mm, s, km, repe, reco);
 				break;
-			default: //Standard entry (impossible...maybe)
-				e = new Entry(n, d, m, y, h, mm, s, km);
+			default: //CycleEntry
+				e = new CycleEntry(n, d, m, y, h, mm, s, km, terr, tem);
 				break;
 		}
 		

@@ -40,11 +40,29 @@ public class TrainingRecord
 		return "Entry not found";
 	}
 	
+	public Boolean isValidDate(int d, int m, int y)
+	{
+		int[] daysInMonth= new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		
+		//If dates negative or 0 or month beyond calender year
+		if (d <= 0 || m <= 0 || m > 12 || y <= 0)
+		{
+			return false;
+		}
+		
+		if (((y % 4 == 0) && (y % 100!= 0)) || (y%400 == 0)) //If leap year
+		{
+			daysInMonth[1] = 29; //Change feb to 29 days
+		}
+		
+		return d <= daysInMonth[m - 1];
+	}
+	
 	//Look up the entry of a given day and month
 	public String lookupEntry (int d, int m, int y)
 	{
 		ListIterator<Entry> iter = tr.listIterator();
-		String result = "No entries found";
+		String result = "No entries found.";
 		while (iter.hasNext())
 		{
 			Entry current = iter.next();
@@ -71,6 +89,11 @@ public class TrainingRecord
 			}
 		}
 		
+		if (result.toString().equals("")) //If no entries found
+		{
+			result.append("No entries found.");
+		}
+		
 		return result.toString();
 	}
 	
@@ -85,4 +108,6 @@ public class TrainingRecord
 	{
 		tr.clear();
 	}
+	
+	
 }
