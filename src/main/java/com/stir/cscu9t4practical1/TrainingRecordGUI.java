@@ -133,12 +133,15 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		
 		add(removeR);
 		removeR.addActionListener(this);
+		removeR.setEnabled(false);
 		
 		add(lookUpByDate);
 		lookUpByDate.addActionListener(this);
+		lookUpByDate.setEnabled(false);
 		
 		add(findAllByDate);
 		findAllByDate.addActionListener(this);
+		findAllByDate.setEnabled(false);
 		
 		add(outputArea);
 		outputArea.setEditable(false);
@@ -176,6 +179,17 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 			JComboBox<String> combo = (JComboBox<String>) event.getSource();
 			entryType = (String) combo.getSelectedItem();
 			System.out.println(combo.getSelectedItem() + " is selected");
+		}
+		
+		//Enable other buttons when they can be used
+		if (myAthletes.getNumberOfEntries() >= 2)
+		{
+			findAllByDate.setEnabled(true); //This is here as you can't findAll if there is only one entry
+		}
+		else if (myAthletes.getNumberOfEntries() >= 1)
+		{
+			removeR.setEnabled(true);
+			lookUpByDate.setEnabled(true);
 		}
 		
 		outputArea.setText(message);
