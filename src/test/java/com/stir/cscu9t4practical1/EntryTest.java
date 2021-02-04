@@ -10,38 +10,32 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author saemundur
- */
-public class EntryTest {
+public class EntryTest
+{
 	
-	public EntryTest() {
-	}
+	public EntryTest()
+	{}
 	
-	@BeforeAll
-	public static void setUpClass() {
-	}
+	@BeforeAll public static void setUpClass()
+	{}
 	
-	@AfterAll
-	public static void tearDownClass() {
-	}
+	@AfterAll public static void tearDownClass()
+	{}
 	
-	@BeforeEach
-	public void setUp() {
-	}
+	@BeforeEach public void setUp()
+	{}
 	
-	@AfterEach
-	public void tearDown() {
-	}
+	@AfterEach public void tearDown()
+	{}
 	
 	/**
 	 * Test of getName method, of class Entry.
 	 */
-	@Test
-	public void testGetName() {
+	@Test public void testGetName()
+	{
 		System.out.println("getName");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		String expResult = "Alice";
@@ -52,8 +46,8 @@ public class EntryTest {
 	/**
 	 * Test of getDay method, of class Entry.
 	 */
-	@Test
-	public void testGetDay() {
+	@Test public void testGetDay()
+	{
 		System.out.println("getDay");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		int expResult = 1;
@@ -64,8 +58,8 @@ public class EntryTest {
 	/**
 	 * Test of getMonth method, of class Entry.
 	 */
-	@Test
-	public void testGetMonth() {
+	@Test public void testGetMonth()
+	{
 		System.out.println("getMonth");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		int expResult = 2;
@@ -76,8 +70,8 @@ public class EntryTest {
 	/**
 	 * Test of getYear method, of class Entry.
 	 */
-	@Test
-	public void testGetYear() {
+	@Test public void testGetYear()
+	{
 		System.out.println("getYear");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		int expResult = 2003;
@@ -88,8 +82,8 @@ public class EntryTest {
 	/**
 	 * Test of getHour method, of class Entry.
 	 */
-	@Test
-	public void testGetHour() {
+	@Test public void testGetHour()
+	{
 		System.out.println("getHour");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		int expResult = 0;
@@ -100,8 +94,8 @@ public class EntryTest {
 	/**
 	 * Test of getMin method, of class Entry.
 	 */
-	@Test
-	public void testGetMin() {
+	@Test public void testGetMin()
+	{
 		System.out.println("getMin");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		int expResult = 16;
@@ -112,8 +106,8 @@ public class EntryTest {
 	/**
 	 * Test of getSec method, of class Entry.
 	 */
-	@Test
-	public void testGetSec() {
+	@Test public void testGetSec()
+	{
 		System.out.println("getSec");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		int expResult = 7;
@@ -124,8 +118,8 @@ public class EntryTest {
 	/**
 	 * Test of getDistance method, of class Entry.
 	 */
-	@Test
-	public void testGetDistance() {
+	@Test public void testGetDistance()
+	{
 		System.out.println("getDistance");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		float expResult = 3.0F;
@@ -136,8 +130,8 @@ public class EntryTest {
 	/**
 	 * Test of getEntry method, of class Entry.
 	 */
-	@Test
-	public void testGetEntry() {
+	@Test public void testGetEntry()
+	{
 		System.out.println("getEntry");
 		Entry instance = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
 		String expResult = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n";

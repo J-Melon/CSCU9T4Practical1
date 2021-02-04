@@ -209,7 +209,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 		String wh = where.getText();
 		
 		//Validation for empty string variables
-		if(n.isEmpty()) //Name empty
+		if (n.isEmpty()) //Name empty
 		{
 			return "Please enter a name";
 		}
@@ -229,7 +229,15 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 			return "Please enter a location or change entry type";
 		}
 		
-		int m = 0; int d = 0; int y = 0; float km = 0; int h = 0; int mm = 0; int s = 0; int repe = 0; int reco = 0;
+		int m = 0;
+		int d = 0;
+		int y = 0;
+		float km = 0;
+		int h = 0;
+		int mm = 0;
+		int s = 0;
+		int repe = 0;
+		int reco = 0;
 		
 		try //Validation for non-int integer entry (Cycle)
 		{
@@ -246,7 +254,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 			return message = "Please fill in the fields necessary.";
 		}
 		
-		if(!myAthletes.isValidDate(d, m, y))
+		if (! myAthletes.isValidDate(d, m, y))
 		{
 			return message = "Date not valid. Please try again";
 		}
@@ -286,7 +294,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 	
 	public String removeEntry()
 	{
-		int m = 0; int d = 0; int y = 0;
+		int m = 0;
+		int d = 0;
+		int y = 0;
 		
 		String n = name.getText();
 		
@@ -306,7 +316,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 	
 	public String lookupEntry()
 	{
-		int m = 0; int d = 0; int y = 0;
+		int m = 0;
+		int d = 0;
+		int y = 0;
 		
 		try
 		{
@@ -325,7 +337,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener
 	
 	public String lookupAllEntry()
 	{
-		int m = 0; int d = 0; int y = 0;
+		int m = 0;
+		int d = 0;
+		int y = 0;
 		
 		try
 		{

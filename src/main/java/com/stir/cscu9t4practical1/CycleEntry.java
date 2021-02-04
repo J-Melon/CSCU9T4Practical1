@@ -23,20 +23,20 @@ public class CycleEntry extends Entry
 		super(n, d, m, y, h, min, s, dist);
 		this.terrain = terrain;
 		this.tempo = tempo;
-		
 	}
+	
 	/**
 	 * Gets a cycle entry and concatenates it into a string
 	 * @return cycle entry string, format: "Alice cycled 3.0 km in 0:16:7 on 1/2/2003 on asphalt at moderate tempo"
 	 */
-	@Override
-	public String getEntry ()
+	@Override public String getEntry()
 	{
-		String result = getName()+" cycled " + getDistance() + " km in " + getHour() + ":" + getMin() + ":" + getSec() + " on "
-				+ getDay() + "/" + getMonth() + "/" + getYear() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
+		String result = getName() + " cycled " + getDistance() + " km in " + getHour() + ":" + getMin() + ":" + getSec() + " on "
+						+ getDay() + "/" + getMonth() + "/" + getYear() + " on " + getTerrain() + " at " + getTempo() + " tempo\n";
 		
 		return result;
 	}
+	
 	/** @return terrain of cycle surface (gravel, asphalt, mountain) */
 	public String getTerrain()
 	{

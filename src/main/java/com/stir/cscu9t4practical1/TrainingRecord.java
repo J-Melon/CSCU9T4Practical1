@@ -1,5 +1,6 @@
 // An implementation of a Training Record as an ArrayList
 package com.stir.cscu9t4practical1;
+
 import java.util.*;
 
 public class TrainingRecord
@@ -30,7 +31,8 @@ public class TrainingRecord
 		return "Record added\n";
 	}
 	
-	/** Remove a record from the list based on name and date.
+	/**
+	 * Remove a record from the list based on name and date.
 	 * @param n name
 	 * @param d day
 	 * @param m month
@@ -60,7 +62,7 @@ public class TrainingRecord
 	 */
 	public Boolean isValidDate(int d, int m, int y)
 	{
-		int[] daysInMonth= new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		int[] daysInMonth = new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		
 		//If dates negative or 0 or month beyond calender year
 		if (d <= 0 || m <= 0 || m > 12 || y <= 0)
@@ -68,7 +70,7 @@ public class TrainingRecord
 			return false;
 		}
 		
-		if (((y % 4 == 0) && (y % 100!= 0)) || (y%400 == 0)) //If leap year
+		if (((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) //If leap year
 		{
 			daysInMonth[1] = 29; //Change feb to 29 days
 		}
@@ -83,14 +85,14 @@ public class TrainingRecord
 	 * @param y year
 	 * @return message (whether is finds an entry)
 	 */
-	public String lookupEntry (int d, int m, int y)
+	public String lookupEntry(int d, int m, int y)
 	{
 		ListIterator<Entry> iter = tr.listIterator();
 		String result = "No entries found.";
 		while (iter.hasNext())
 		{
 			Entry current = iter.next();
-			if (current.getDay()==d && current.getMonth()==m && current.getYear()==y)
+			if (current.getDay() == d && current.getMonth() == m && current.getYear() == y)
 			{
 				result = current.getEntry();
 			}
@@ -107,7 +109,7 @@ public class TrainingRecord
 	 * @return message (whether is finds entries)
 	 */
 	//Looks up all entries of a given day and month
-	public String lookupAllEntry (int d, int m, int y)
+	public String lookupAllEntry(int d, int m, int y)
 	{
 		ListIterator<Entry> iter = tr.listIterator();
 		StringBuilder result = new StringBuilder();
