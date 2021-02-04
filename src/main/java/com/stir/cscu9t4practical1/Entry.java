@@ -2,67 +2,90 @@
 package com.stir.cscu9t4practical1;
 
 import java.util.Calendar;
+
 public class Entry
 {
 	private String name;
 	private Calendar dateAndTime;
 	private float distance;
 	
-	public Entry (String n, int d, int m, int y, int h, int min, int s, float dist)
+	/**
+	 * Constructor
+	 * @param n name
+	 * @param d day
+	 * @param m month
+	 * @param y year
+	 * @param h hours
+	 * @param min minutes
+	 * @param s seconds
+	 * @param dist distance
+	 */
+	public Entry(String n, int d, int m, int y, int h, int min, int s, float dist)
 	{
-		name = n;
 		Calendar inst = Calendar.getInstance();
-		inst.set(y,m-1,d,h,min,s);
-		dateAndTime = inst;
-		distance = dist;
+		inst.set(y, m - 1, d, h, min, s);
+		this.name = n;
+		this.dateAndTime = inst;
+		this.distance = dist;
 	}
 	
-	public String getName ()
+	/** @return name of athlete */
+	public String getName()
 	{
 		return name;
 	}
 	
-	public int getDay ()
+	/** @return day within date */
+	public int getDay()
 	{
 		return dateAndTime.get(Calendar.DATE);
 	}
 	
-	public int getMonth ()
+	/** @return month within date */
+	public int getMonth()
 	{
-		int month =  dateAndTime.get(Calendar.MONTH) + 1;
+		int month = dateAndTime.get(Calendar.MONTH) + 1;
 		return month;
 	}
 	
-	public int getYear ()
+	/** @return year within date */
+	public int getYear()
 	{
 		return dateAndTime.get(Calendar.YEAR);
 	}
 	
-	public int getHour ()
+	/** @return hour within training time */
+	public int getHour()
 	{
 		return dateAndTime.get(Calendar.HOUR);
 	}
 	
-	public int getMin ()
+	/** @return minutes within training time */
+	public int getMin()
 	{
 		return dateAndTime.get(Calendar.MINUTE);
 	}
 	
-	public int getSec ()
+	/** @return seconds within training time */
+	public int getSec()
 	{
 		return dateAndTime.get(Calendar.SECOND);
 	}
 	
-	public float getDistance ()
+	/** @return training distance */
+	public float getDistance()
 	{
 		return distance;
 	}
 	
-	public String getEntry ()
+	/**
+	 * Gets an entry and concatenates it into a string.
+	 * @return entry string, format: "Alice cycled 3.0 km in 0:16:7 on 1/2/2003 on asphalt at moderate tempo\n"
+	 */
+	public String getEntry()
 	{
-		String result = getName()+" ran " + getDistance() + " km in "
-				+getHour()+":"+getMin()+":"+ getSec() + " on "
-				+getDay()+"/"+getMonth()+"/"+getYear()+"\n";
+		String result = getName() + " ran " + getDistance() + " km in " + getHour() + ":" + getMin() + ":" + getSec() + " on "
+						+ getDay() + "/" + getMonth() + "/" + getYear() + "\n";
 		
 		return result;
 	}
